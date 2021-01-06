@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ceed0a34-3894-482b-9465-83ba2fb82c30">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ESTADO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pedido.`id_pedido` AS pedido_id_pedido,
+     pedido.`fecha` AS pedido_fecha,
+     pedido.`estado` AS pedido_estado,
+     detallepedido.`pedido_id` AS detallepedido_pedido_id,
+     cliente.`nro_documento` AS cliente_nro_documento,
+     count(detallepedido.`pedido_id`)
+FROM
+     `pedido` pedido INNER JOIN `detallepedido` detallepedido ON pedido.`id_pedido` = detallepedido.`pedido_id`
+     INNER JOIN `cliente` cliente ON pedido.`cliente_id` = cliente.`id_cliente`
+
+GROUP BY
+     pedido.`id_pedido`]]>
+	</queryString>
+	<field name="pedido_id_pedido" class="java.lang.Integer"/>
+	<field name="pedido_fecha" class="java.sql.Timestamp"/>
+	<field name="pedido_estado" class="java.lang.String"/>
+	<field name="detallepedido_pedido_id" class="java.lang.Integer"/>
+	<field name="cliente_nro_documento" class="java.lang.String"/>
+	<field name="count(detallepedido.`pedido_id`)" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="91" y="10" width="403" height="51" uuid="9706f129-209b-4fd9-8b86-60740c4a342b"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[Reporte de pedidos]]></text>
+			</staticText>
+			<image>
+				<reportElement x="20" y="10" width="100" height="55" uuid="b13d3327-e568-4971-a3d9-fd8ae58d2653"/>
+				<imageExpression><![CDATA["\\imagenes\\tacon.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="21" width="276" height="31" uuid="7b2e5f55-2262-49f5-b6c9-0ace55e1b920"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Lista de pedidos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="63" height="20" uuid="31ad94b0-1731-4e31-bc0b-d9ed251a0503"/>
+				<text><![CDATA[ID PEDIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="91" y="0" width="82" height="20" uuid="8258fe20-992a-4d65-af41-a4180f21c9b7"/>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="0" width="79" height="20" uuid="b4fbebe3-ec03-4e15-a07f-137bff500305"/>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="0" width="89" height="20" uuid="8d9a5ce7-886d-4bb9-8a1a-0eccfddaca7e"/>
+				<text><![CDATA[DETALLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="0" width="84" height="20" uuid="46a68659-fdfc-444b-899f-a1cc5ab29a5e"/>
+				<text><![CDATA[DNI CLIENTE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="23" y="0" width="50" height="20" uuid="384bf925-5c19-48d1-a106-156cde82f4ef"/>
+				<textFieldExpression><![CDATA[$F{pedido_id_pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="0" width="82" height="20" uuid="b86a93ca-1664-4721-8fdb-d002cc4d3fad"/>
+				<textFieldExpression><![CDATA[$F{pedido_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="0" width="79" height="20" uuid="881ebb05-268f-43be-90e0-4e8ddabc3f07"/>
+				<textFieldExpression><![CDATA[$F{pedido_estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="291" y="0" width="60" height="20" uuid="e62c4b78-54b8-48b7-a3b9-1179531e2dd5"/>
+				<textFieldExpression><![CDATA[$F{count(detallepedido.`pedido_id`)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="0" width="84" height="20" uuid="b6a40898-f25b-4ba9-adb8-1917aabcfc7f"/>
+				<textFieldExpression><![CDATA[$F{cliente_nro_documento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

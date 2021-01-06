@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fe12cbc2-c739-43f2-b720-2638153c52bc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ESTADO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     insumo.`nombre` AS insumo_nombre,
+     insumo.`cantidad` AS insumo_cantidad,
+     insumo.`precio` AS insumo_precio,
+     proveedor.`razon_social` AS proveedor_razon_social,
+     proveedor.`telefono` AS proveedor_telefono,
+     proveedor.`Ruc` AS proveedor_Ruc
+FROM
+     `proveedor` proveedor INNER JOIN `insumo` insumo ON proveedor.`id_proveedor` = insumo.`proveedor_id`]]>
+	</queryString>
+	<field name="insumo_nombre" class="java.lang.String"/>
+	<field name="insumo_cantidad" class="java.lang.Integer"/>
+	<field name="insumo_precio" class="java.lang.Float"/>
+	<field name="proveedor_razon_social" class="java.lang.String"/>
+	<field name="proveedor_telefono" class="java.lang.String"/>
+	<field name="proveedor_Ruc" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="0" width="382" height="62" uuid="a56aff0e-2f07-4b7e-b114-28a47d9b6773"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[Reporte de insumos ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="20" y="0" width="100" height="55" uuid="42bda353-2509-445e-bb21-a8bc8e5636cc"/>
+				<imageExpression><![CDATA["\\imagenes\\tacon.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="0" width="265" height="33" uuid="41df8f4d-db41-4787-b9fb-ca1b03c09b28"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Lista de insumos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="0" width="73" height="20" forecolor="#FF0000" uuid="99c670e8-02c3-418b-ba42-822e706027ad"/>
+				<text><![CDATA[INSUMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="0" width="73" height="20" forecolor="#FF0000" uuid="39d2ef7e-a807-489a-b5c7-453967737bab"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="0" width="67" height="20" forecolor="#FF0000" uuid="7b71a864-b32b-4b17-852f-8cd0b7f710c6"/>
+				<text><![CDATA[PRECIO C/U]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="0" width="84" height="20" forecolor="#FF0000" uuid="3ac211a7-658e-4a12-81b1-6f119375d46b"/>
+				<text><![CDATA[PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="56" height="20" forecolor="#FF0000" uuid="e4142b92-6b3e-446a-8dd3-70781ef0942f"/>
+				<text><![CDATA[RUC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="489" y="0" width="56" height="20" forecolor="#FF0000" uuid="3a1afbd9-2546-464c-a022-3a825e8f8fa2"/>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="17" y="0" width="73" height="20" uuid="f75328a8-9912-495d-88ca-79e16bafae7e"/>
+				<textFieldExpression><![CDATA[$F{insumo_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="0" width="61" height="20" uuid="9ca35504-04b7-4dff-8463-08fcdee3f87d"/>
+				<textFieldExpression><![CDATA[$F{insumo_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="0" width="54" height="20" uuid="3a3f7908-de73-477d-b59a-300ac24982f6"/>
+				<textFieldExpression><![CDATA[$F{insumo_precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="121" height="20" uuid="d19dd961-056b-4b52-9d0d-014b098c8d27"/>
+				<textFieldExpression><![CDATA[$F{proveedor_razon_social}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="56" height="20" uuid="ffeee5cf-b29a-4e1e-8337-dccedff4d714"/>
+				<textFieldExpression><![CDATA[$F{proveedor_Ruc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="499" y="0" width="46" height="20" uuid="69b37e96-a5a2-45d2-8f69-87d576531b51"/>
+				<textFieldExpression><![CDATA[$F{proveedor_telefono}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
